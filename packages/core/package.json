@@ -1,0 +1,56 @@
+{
+  "name": "vite-plugin-unocss-to-uni",
+  "version": "0.0.0",
+  "description": "Adapt unocss to uni-app",
+  "keywords": [
+    "vite",
+    "vue",
+    "vite-plugin",
+    "unocss",
+    "uni-app"
+  ],
+  "homepage": "https://github.com/zguolee/vite-plugin-unocss-to-uni/tree/main/#readme",
+  "bugs": {
+    "url": "https://github.com/zguolee/vite-plugin-unocss-to-uni/issues"
+  },
+  "license": "MIT",
+  "author": "zguolee",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zguolee/vite-plugin-unocss-to-uni",
+    "directory": "packages/core"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "CHANGELOG.md",
+    "README.md",
+    "README.zh_CN.md"
+  ],
+  "scripts": {
+    "build": "pnpm unbuild",
+    "dev": "pnpm unbuild --stub",
+    "prepack": "pnpm unbuild",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "vite": ">=2.0.0"
+  },
+  "dependencies": {
+    "@vue/compiler-sfc": "^3.2.29",
+    "magic-string": "^0.25.7"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "vite": "^2.8.6"
+  }
+}
