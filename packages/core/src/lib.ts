@@ -1,71 +1,96 @@
 import { parse } from '@vue/compiler-sfc'
 import MagicString from 'magic-string'
 
+/**
+ * Escape string to regular expression
+ *
+ * @param str String to be escaped
+ * @returns Escaped string
+ */
 function escapeRegExp(str: string) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 }
 
-// class="m-0.5 p-2.5"
-function classTransform(originStr: string, targetStr: string) {
-  const reg = new RegExp(escapeRegExp(targetStr))
+/**
+ * Escape characters that the applet cannot support
+ *
+ * @param originStr Raw string
+ * @param targetStr String to process
+ * @returns Processed string
+ */
+function escapeCharacter(originStr: string, targetStr: string) {
+  const str2RegExp = new RegExp(escapeRegExp(targetStr))
   let replaceStr = targetStr
   // dot
   if (targetStr.includes('.'))
     replaceStr = replaceStr.replace(/\./g, '-point-')
   // // div
-  if (targetStr.includes('/')) replaceStr = replaceStr.replace(/\//g, '-div-')
+  if (targetStr.includes('/'))
+    replaceStr = replaceStr.replace(/\//g, '-div-')
   // colon
-  if (targetStr.includes(':')) replaceStr = replaceStr.replace(/\:/g, '-c-')
+  if (targetStr.includes(':'))
+    replaceStr = replaceStr.replace(/\:/g, '-c-')
   // percent
-  if (targetStr.includes('%')) replaceStr = replaceStr.replace(/\%/g, '-pct-')
+  if (targetStr.includes('%'))
+    replaceStr = replaceStr.replace(/\%/g, '-pct')
   // !important
-  if (targetStr.includes('!')) replaceStr = replaceStr.replace(/\!/g, '-i-')
+  if (targetStr.includes('!'))
+    replaceStr = replaceStr.replace(/\!/g, 'i-')
   // hex
-  if (targetStr.includes('#')) replaceStr = replaceStr.replace(/\#/g, '-h-')
+  if (targetStr.includes('#'))
+    replaceStr = replaceStr.replace(/\#/g, '-h-')
   // paren
-  if (targetStr.includes('(')) replaceStr = replaceStr.replace(/\(/g, '-p-')
-  if (targetStr.includes(')')) replaceStr = replaceStr.replace(/\)/g, '-q-')
+  if (targetStr.includes('('))
+    replaceStr = replaceStr.replace(/\(/g, 'p-')
+  if (targetStr.includes(')'))
+    replaceStr = replaceStr.replace(/\)/g, '-q')
   // square
-  if (targetStr.includes('[')) replaceStr = replaceStr.replace(/\[/g, '-l-')
-  if (targetStr.includes(']')) replaceStr = replaceStr.replace(/\]/g, '-r-')
+  if (targetStr.includes('['))
+    replaceStr = replaceStr.replace(/\[/g, 'l-')
+  if (targetStr.includes(']'))
+    replaceStr = replaceStr.replace(/\]/g, '-r')
   // x,x to x-comma-x
   if (targetStr.includes(','))
     replaceStr = replaceStr.replace(/\,/g, '-comma-')
-  return originStr.replace(reg, replaceStr)
+  return originStr.replace(str2RegExp, replaceStr)
 }
 
-// :class="'p-2.5 m-0.5'"
-function class2Transform(originStr: string, targetStr: string) {
-  const classMatches = targetStr.match(/'((?!( : |':')).)+'/g)
+// Regular expression of characters to be escaped
+const charReg = /[.:%!#()[\],]/
+
+/**
+ * Handling `class` and `:class`
+ * @param code Raw string
+ * @returns Processed string
+ */
+export function classProcess(code: string) {
+  let strTemp = code
+  const classMatches = code.match(/:?class=\".*?\"/g)
   if (classMatches?.length) {
     classMatches.forEach((classMatch) => {
-      originStr = classTransform(originStr, classMatch)
+      if (classMatch.startsWith('class') && charReg.test(classMatch)) {
+        strTemp = escapeCharacter(strTemp, classMatch)
+      }
+      else if (classMatch.startsWith(':class')) {
+        const reactiveClassMatches = classMatch.match(/'.+?'/g)
+        if (reactiveClassMatches?.length) {
+          reactiveClassMatches.forEach((reactiveClassMatch) => {
+            if (charReg.test(reactiveClassMatch))
+              strTemp = escapeCharacter(strTemp, reactiveClassMatch)
+          })
+        }
+      }
     })
   }
-  return originStr
+  return strTemp
 }
 
-export function classNameTransform(code: string, id: string) {
+export function escape(code: string, id: string) {
   let s: MagicString | undefined
   const { descriptor } = parse(code)
-  if (!descriptor.template?.content) return null
-  let strTemp = code
-  const matches = code.match(/:?class=\".*\"/g)
-  if (matches?.length) {
-    matches.forEach((match) => {
-      if (!match.includes(':class')) {
-        strTemp = classTransform(strTemp, match)
-      }
-      else if (match.startsWith(':class')) {
-        strTemp = class2Transform(strTemp, match)
-      }
-      else {
-        const classSplit = match.split(':class')
-        strTemp = classTransform(strTemp, classSplit[0])
-        strTemp = class2Transform(strTemp, classSplit[1])
-      }
-    })
-  }
+  if (!descriptor.template?.content)
+    return null
+  const strTemp = classProcess(code)
   const str = () => s || (s = new MagicString(strTemp))
   return {
     map: str().generateMap({ file: id }),

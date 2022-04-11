@@ -37,20 +37,11 @@
     "README.zh_CN.md"
   ],
   "scripts": {
-    "build": "pnpm unbuild",
-    "dev": "pnpm unbuild --stub",
-    "prepack": "pnpm unbuild",
-    "prepublishOnly": "npm run build"
-  },
-  "peerDependencies": {
-    "vite": ">=2.0.0"
+    "build": "unbuild",
+    "stub": "unbuild --stub"
   },
   "dependencies": {
-    "@vue/compiler-sfc": "^3.2.29",
-    "magic-string": "^0.25.7"
-  },
-  "devDependencies": {
-    "@types/node": "^17.0.21",
-    "vite": "^2.8.6"
+    "@vue/compiler-sfc": "^3.2.31",
+    "magic-string": "^0.26.1"
   }
 }
