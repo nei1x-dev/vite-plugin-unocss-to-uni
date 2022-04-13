@@ -80,8 +80,6 @@ export default defineConfig({
 ```
 代码片段
 
-**注意：** 确保 `class` 和 `:class` 属性独占一行
-
 ```html
 <template>
   <div class="flex flex-col justify-center items-center">
