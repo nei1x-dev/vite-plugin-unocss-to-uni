@@ -39,7 +39,7 @@ pnpm add -D vite-plugin-unocss-to-uni
 import { defineConfig } from 'vite'
 ...
 import Unocss from 'unocss/vite'
-import UnocssToUni from 'vite-plugin-unocss-to-uni'
+import { UnocssToUni } from 'vite-plugin-unocss-to-uni'
 
 // https://vitejs.dev/config/
 export default defineConfig({
