@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-unocss-to-uni",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Adapt unocss to uni-app",
   "keywords": [
     "vite",
