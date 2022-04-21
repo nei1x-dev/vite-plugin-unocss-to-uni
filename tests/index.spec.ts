@@ -23,7 +23,7 @@ describe('unocss to uni test.', () => {
 
   test('normal.', async() => {
     const content = await fs.readFile(
-      path.resolve(__dirname, './fixtures/test.vue'),
+      path.resolve(__dirname, '../playground/App.vue'),
     )
     expect(classProcess(content.toString())).toMatchInlineSnapshot(`
       "<script setup lang=\\"ts\\">
@@ -40,16 +40,19 @@ describe('unocss to uni test.', () => {
           <div class=\\"p-1\\" :class=\\"'text-yellow-500'\\">
             abckefghijklmnopqrstuvwxyz
           </div>
-          <div class=\\"bg-l-hslp-2-point-7-comma-81-point-9-pct-comma-69-point-6-pct-q-r py-3-point-5\\" :class=\\"expectTrue(b) ? 'm-0-point-2' : ''\\">
+          <div class=\\"bg-l-hslp-2-point-7-comma-81-point-9-pct-comma-69-point-6-pct-q-r py-3-point-5\\">
             py-3.5
           </div>
-          <p class=\\"font-medium text-xs p-2-point-5\\" :class=\\"1 ? 'text-10px leading-tight p-2-point-5' : 'm-3-point-5'\\">
+          <p
+            class=\\"font-medium text-xs p-2-point-5\\"
+            :class=\\"1 ? 'text-10px leading-tight p-2-point-5' : 'm-3-point-5'\\"
+          >
             p-2.5
           </p>
-          <div class=\\"m-1-point-5 p-1\\" :class=\\"'text-yellow-500 p-2-point-5'\\">
+          <div class=\\"m-0-point-5 p-1\\" :class=\\"'text-yellow-500 p-2-point-5'\\">
             abckefghijklmnopqrstuvwxyz
           </div>
-          <button class=\\"btn\\">
+          <button class=\\"btn\\" :class=\\"true ? '' : 'h-0'\\">
             123
           </button>
         </div>

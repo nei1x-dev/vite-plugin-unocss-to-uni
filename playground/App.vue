@@ -24,7 +24,7 @@
     <div class="m-0.5 p-1" :class="'text-yellow-500 p-2.5'">
       abckefghijklmnopqrstuvwxyz
     </div>
-    <button class="btn">
+    <button class="btn" :class="true ? '' : 'h-0'">
       123
     </button>
   </div>

@@ -72,7 +72,7 @@ export function classProcess(code: string) {
         strTemp = escapeCharacter(strTemp, classMatch)
       }
       else if (classMatch.startsWith(':class')) {
-        const reactiveClassMatches = classMatch.match(/'.+?'/g)
+        const reactiveClassMatches = classMatch.match(/'.*?'/g)
         if (reactiveClassMatches?.length) {
           reactiveClassMatches.forEach((reactiveClassMatch) => {
             if (charReg.test(reactiveClassMatch))
