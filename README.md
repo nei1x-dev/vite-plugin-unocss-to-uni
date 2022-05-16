@@ -77,6 +77,7 @@ export default defineConfig({
     return t
   },
 })
+```
 
 ## Example
 [ColorTimetable](https://github.com/zguolee/ColorTimetable)
