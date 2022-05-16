@@ -2,10 +2,10 @@
 
 [![Version](https://img.shields.io/npm/v/vite-plugin-unocss-to-uni.svg?style=flat-square&logo=npm) ![Downloads](https://img.shields.io/npm/dm/vite-plugin-unocss-to-uni.svg?style=flat-square&logo=npm)](https://www.npmjs.com/package/vite-plugin-unocss-to-uni)
 
-> `vite-plugin-unocss-to-uni` 是一个 [UnoCSS](https://github.com/unocss/unocss) 到 `UniApp` 的转换器，可以将 [UnoCSS](https://github.com/unocss/unocss) 中 [Tailwind / Windi CSS](https://github.com/unocss/unocss/tree/main/packages/preset-wind) 预处理的样式转换为小程序可用的样式。
+> A Vite plugin that supports [UnoCSS](https://github.com/unocss/unocss) in [uni-app](https://github.com/dcloudio/uni-app), which can transform some `class` that mini-program can't use.
 
 
-## 小程序 `class` 名处理
+## `class` transform
 
 | form | to      | sample                 |
 | ---- | ------- | ---------------------- |
@@ -21,19 +21,19 @@
 | `\]` | `-r` | `bg-[hsl(2.7,81.9%,69.6%)]` -> `bg-[hsl(2.7,81.9%,69.6%)-r` |
 | `\,` | `-comma-` | `bg-[hsl(2.7,81.9%,69.6%)]` -> `bg-[hsl(2.7-comma-81.9%-comma-69.6%)]` |
 
-## 使用
+## Usage
 
-### 准备
+### Prepare
 
-- 🎨 [UnoCSS](https://github.com/unocss/unocss) - 高性能且极具灵活性的即时原子化 CSS 引擎
+- 🎨 [UnoCSS](https://github.com/unocss/unocss) - The instant on-demand atomic CSS engine.
 
-### 安装
+### Install
 
 ```bash
 pnpm add -D vite-plugin-unocss-to-uni
 ```
 
-### 配置 `vite.config.ts`
+### Configure `vite.config.ts`
 
 ```typescript
 import { defineConfig } from 'vite'
@@ -47,14 +47,14 @@ export default defineConfig({
     vue(),
 
     Unocss(),
-    // 确保在 Unocss 之后
+    // Make sure it's behind Unocss
     UnocssToUni(),
   ],
 })
 
 ```
 
-### 配置 `unocss.config.ts`
+### Configure `unocss.config.ts`
 
 ```typescript
 import {
@@ -77,30 +77,8 @@ export default defineConfig({
     return t
   },
 })
-```
-代码片段
 
-```html
-<template>
-  <div class="flex flex-col justify-center items-center">
-    <div class="text-green-500 text-2xl i-carbon-campsite" />
-    <div class="border bg-blue-200 px-2 !bg-red-500">
-      0123456789
-    </div>
-    <div class="bg-[hsl(2.7,81.9%,69.6%)] py-3.5">
-      py-3.5
-    </div>
-    <p
-      class="font-medium text-xs p-2.5"
-      :class="1 ? 'text-10px leading-tight p-2.5' : 'm-3.5'"
-    >
-      p-2.5
-    </p>
-  </div>
-</template>
-```
-
-## 示例项目
+## Example
 [ColorTimetable](https://github.com/zguolee/ColorTimetable)
 
 ## License
