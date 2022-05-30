@@ -2,6 +2,17 @@
   "name": "vite-plugin-unocss-to-uni",
   "version": "0.0.13",
   "description": "Adapt unocss to uni-app",
+  "author": "zguolee",
+  "license": "MIT",
+  "homepage": "https://github.com/zguolee/vite-plugin-unocss-to-uni/tree/main/#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zguolee/vite-plugin-unocss-to-uni",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/zguolee/vite-plugin-unocss-to-uni/issues"
+  },
   "keywords": [
     "vite",
     "vue",
@@ -9,27 +20,16 @@
     "unocss",
     "uni-app"
   ],
-  "homepage": "https://github.com/zguolee/vite-plugin-unocss-to-uni/tree/main/#readme",
-  "bugs": {
-    "url": "https://github.com/zguolee/vite-plugin-unocss-to-uni/issues"
-  },
-  "license": "MIT",
-  "author": "zguolee",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/zguolee/vite-plugin-unocss-to-uni",
-    "directory": "packages/core"
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    }
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
-    }
-  },
   "files": [
     "dist"
   ],
@@ -46,20 +46,20 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@vue/compiler-sfc": "^3.2.31",
-    "magic-string": "^0.26.1"
+    "@vue/compiler-sfc": "^3.2.36",
+    "magic-string": "^0.26.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.20.2",
-    "@types/node": "^17.0.21",
+    "@antfu/eslint-config": "^0.25.0",
+    "@types/node": "^17.0.36",
     "bumpp": "^7.1.1",
     "conventional-changelog-cli": "^2.2.2",
-    "eslint": "^8.13.0",
-    "esno": "^0.14.1",
+    "eslint": "^8.16.0",
+    "esno": "^0.16.3",
     "rimraf": "^3.0.2",
-    "typescript": "^4.6.3",
-    "unbuild": "^0.7.2",
-    "vite": "^2.9.1",
-    "vitest": "^0.9.3"
+    "typescript": "^4.7.2",
+    "unbuild": "^0.7.4",
+    "vite": "^2.9.9",
+    "vitest": "^0.13.0"
   }
 }

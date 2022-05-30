@@ -12,7 +12,7 @@
     <div class="p-1" :class="'text-yellow-500'">
       abckefghijklmnopqrstuvwxyz
     </div>
-    <div class="bg-[hsl(2.7,81.9%,69.6%)] py-3.5">
+    <div class="bg-[hsl(2.7,81.9%,69.6%)] py-3.5 grid-cols-[0.7fr_repeat(7,1fr)]">
       py-3.5
     </div>
     <p

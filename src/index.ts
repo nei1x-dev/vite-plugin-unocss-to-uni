@@ -33,6 +33,8 @@ export function unocssToUniProcess(str: string) {
   // x,x to x-comma-x
   if (str.includes('\\2c '))
     str = str.replace(/\\2c\s/g, '-comma-')
+  if (str.includes('\,'))
+    str = str.replace(/\\\,/g, '-comma-')
   return str
 }
 

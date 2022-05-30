@@ -30,7 +30,7 @@ describe('unocss to uni test.', () => {
       // This starter template is using Vue 3 <script setup> SFCs
       // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
       </script>
-      
+
       <template>
         <div class=\\"flex flex-col justify-center items-center\\">
           <div class=\\"text-green-500 text-2xl i-carbon-campsite\\" />
@@ -40,7 +40,7 @@ describe('unocss to uni test.', () => {
           <div class=\\"p-1\\" :class=\\"'text-yellow-500'\\">
             abckefghijklmnopqrstuvwxyz
           </div>
-          <div class=\\"bg-l-hslp-2-point-7-comma-81-point-9-pct-comma-69-point-6-pct-q-r py-3-point-5\\">
+          <div class=\\"bg-l-hslp-2-point-7-comma-81-point-9-pct-comma-69-point-6-pct-q-r py-3-point-5 grid-cols-l-0-point-7fr_repeatp-7-comma-1fr-q-r\\">
             py-3.5
           </div>
           <p
