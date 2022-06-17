@@ -1,4 +1,4 @@
-import type { Plugin } from 'vite'
+import type { PluginOption } from 'vite'
 import { escape } from './lib'
 
 export function unocssToUniProcess(str: string) {
@@ -31,14 +31,12 @@ export function unocssToUniProcess(str: string) {
   if (str.includes('\]'))
     str = str.replace(/\\\]/g, '-r')
   // x,x to x-comma-x
-  if (str.includes('\\2c '))
-    str = str.replace(/\\2c\s/g, '-comma-')
   if (str.includes('\,'))
     str = str.replace(/\\\,/g, '-comma-')
   return str
 }
 
-export function UnocssToUni(): Plugin {
+export function UnocssToUni(): PluginOption {
   return {
     name: 'vite:unocss-to-uni',
     enforce: 'pre',

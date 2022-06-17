@@ -26,6 +26,7 @@
 ### Prepare
 
 - 🎨 [UnoCSS](https://github.com/unocss/unocss) - The instant on-demand atomic CSS engine.
+- Make sure that the version is less than or equal to 0.35.0 (WIP)
 
 ### Install
 
@@ -56,7 +57,7 @@ export default defineConfig({
 
 ### Configure `unocss.config.ts`
 
-```typescript
+```typescript{}
 import {
   defineConfig,
   presetIcons,
@@ -68,7 +69,12 @@ import { unocssToUniProcess } from 'vite-plugin-unocss-to-uni'
 export default defineConfig({
   ...
   presets: [
-    presetUno(),
+    // https://github.com/unocss/unocss/blob/main/packages/preset-mini/src/preflights.ts
+    // The miniprogram does not support the `*` selector.
+    {
+      ...presetUno(),
+      preflights: undefined,
+    },
     ...
   ],
   ...
@@ -78,6 +84,8 @@ export default defineConfig({
   },
 })
 ```
+
+
 
 ## Example
 [ColorTimetable](https://github.com/zguolee/ColorTimetable)

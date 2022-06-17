@@ -5,11 +5,11 @@
 
 <template>
   <div class="flex flex-col justify-center items-center">
-    <div class="text-green-500 text-2xl i-carbon-campsite" />
-    <div class="border bg-blue-200 px-2 !bg-red-500">
+    <div class="text-green-500 text-2xl rotate-180 i-carbon-campsite" />
+    <div class="border bg-blue-200 px-2 transition-all !bg-red-500">
       0123456789
     </div>
-    <div class="p-1" :class="'text-yellow-500'">
+    <div class="p-1" :class="true ? 'text-yellow-500' : ''">
       abckefghijklmnopqrstuvwxyz
     </div>
     <div class="bg-[hsl(2.7,81.9%,69.6%)] py-3.5 grid-cols-[0.7fr_repeat(7,1fr)]">
@@ -21,7 +21,7 @@
     >
       p-2.5
     </p>
-    <div class="m-0.5 p-1" :class="'text-yellow-500 p-2.5'">
+    <div class="m-0.5 p-1" :class="true ? '' : 'text-yellow-500 p-2.5'">
       abckefghijklmnopqrstuvwxyz
     </div>
     <button class="btn" :class="true ? '' : 'h-0'">
