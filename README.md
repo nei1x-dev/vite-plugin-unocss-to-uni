@@ -73,7 +73,15 @@ export default defineConfig({
     // The miniprogram does not support the `*` selector.
     {
       ...presetUno(),
-      preflights: undefined,
+      preflights: [
+        {
+          layer: 'preflights',
+          getCSS(ctx: PreflightContext<any>) {
+            if (ctx.theme.preflightBase)
+              return `page{${entriesToCss(Object.entries(ctx.theme.preflightBase))}}`
+          },
+        },
+      ],
     },
     ...
   ],
