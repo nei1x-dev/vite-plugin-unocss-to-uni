@@ -4,6 +4,8 @@
 
 > A Vite plugin that supports [UnoCSS](https://github.com/unocss/unocss) in [uni-app](https://github.com/dcloudio/uni-app), which can transform some `class` that mini-program can't use.
 
+:warning: It's recommended to use [preset-uni](https://github.com/zguolee/preset-uni) instead of this plugin.
+
 
 ## `class` transform
 
@@ -57,7 +59,7 @@ export default defineConfig({
 
 ### Configure `unocss.config.ts`
 
-```typescript{}
+```typescript
 import {
   defineConfig,
   presetIcons,
@@ -99,4 +101,5 @@ export default defineConfig({
 [ColorTimetable](https://github.com/zguolee/ColorTimetable)
 
 ## License
-MIT
+
+[MIT](./LICENSE) License © 2022-PRESENT [zguolee](https://github.com/zguolee)
