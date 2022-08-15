@@ -4,7 +4,7 @@
 
 > A Vite plugin that supports [UnoCSS](https://github.com/unocss/unocss) in [uni-app](https://github.com/dcloudio/uni-app), which can transform some `class` that mini-program can't use.
 
-:warning: It's recommended to use [unocss-preset-uni](https://github.com/zguolee/unocss-preset-uni) instead of this plugin.
+:warning: It's recommended to use [unocss-applet](https://github.com/unocss-applet/unocss-applet) instead of this plugin.
 
 
 ## `class` transform
